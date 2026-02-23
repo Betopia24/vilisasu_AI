@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   # Bible AI FastAPI Application
   bible-ai-app:
@@ -38,6 +36,6 @@ services:
 # Networks
 networks:
   bible-ai-network:
-    driver: bridge
+    external: true
     name: vilisasu-bible-ai-network
 
