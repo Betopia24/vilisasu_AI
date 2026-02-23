@@ -16,8 +16,6 @@ services:
       - ./.env:/app/.env:ro
     ports:
       - "8065:8065"
-    networks:
-      - bible-ai-network
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8065/health"]
       interval: 30s
@@ -33,9 +31,4 @@ services:
           cpus: '0.5'
           memory: 512M
 
-# Networks
-networks:
-  bible-ai-network:
-    external: true
-    name: vilisasu-bible-ai-network
 
