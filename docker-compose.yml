@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  # Bible AI FastAPI Application
+  bible-ai-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: vilisasu-bible-ai-app
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      - PORT=8065
+      - ENVIRONMENT=production
+    volumes:
+      - ./app:/app/app:ro
+      - ./.env:/app/.env:ro
+    ports:
+      - "8065:8065"
+    networks:
+      - bible-ai-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8065/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+
+# Networks
+networks:
+  bible-ai-network:
+    driver: bridge
+    name: vilisasu-bible-ai-network
+
