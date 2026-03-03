@@ -13,7 +13,7 @@ class Settings(BaseSettings):
     
     # OpenAI Settings
     openai_api_key: str = Field(..., alias="OPEN_AI_API_KEY")
-    openai_model: str = Field(default="gpt-4o-2024-08-06", alias="Model")
+    openai_model: str = Field(default="gpt-4.1-mini", alias="Model")
     openai_max_tokens: int = 512
     openai_temperature: float = 0.7
     openai_top_p: float = 0.9
